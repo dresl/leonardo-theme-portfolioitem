@@ -1,0 +1,78 @@
+{% extends widget.get_base_template %}
+
+{% block content %}
+
+{% for item in widget.items %}
+
+{# GRAYSCALE #}
+
+{% if item.slug == "polls" %}
+<section id="{{ item.slug }}" class="bg-headline1 parallax">
+  <div class="container{% if item.layout == 'fluid' %}-fluid{% endif %} polls-container">
+    {% include "widget/contextnavigation/_item.html" %}
+  </div>
+</section>
+{% elif item.slug == "blog" %}
+<section id="{{ item.slug }}" class="bg-gray">
+  <div class="container{% if item.layout == 'fluid' %}-fluid{% endif %}">
+    {% include "widget/contextnavigation/_item.html" %}
+  </div>
+</section>
+{% elif item.slug == "brigades" %}
+<section id="{{ item.slug }}" class="bg-gray">
+  <div class="container{% if item.layout == 'fluid' %}-fluid{% endif %}">
+    {% include "widget/contextnavigation/_item.html" %}
+  </div>
+</section>
+{% elif item.slug == "contact" %}
+<section id="{{ item.slug }}" class="bg-headline2 parallax">
+  <div class="container{% if item.layout == 'fluid' %}-fluid{% endif %}">
+    {% include "widget/contextnavigation/_item.html" %}
+  </div>
+</section>
+{% elif item.slug == "calc" %}
+<section id="{{ item.slug }}" class="bg-gray">
+  <div class="container{% if item.layout == 'fluid' %}-fluid{% endif %}">
+    {% include "widget/contextnavigation/_item.html" %}
+  </div>
+</section>
+{% elif item.slug == "map" %}
+<section id="{{ item.slug }}" class="bg-map">
+  <div class="container{% if item.layout == 'fluid' %}-fluid{% endif %}">
+    {% include "widget/contextnavigation/_item.html" %}
+  </div>
+</section>
+
+{# UNKNOWN #}
+
+{% else %}
+<section id="{{ item.slug }}" class="bg-unknown">
+  <div class="container{% if item.layout == 'fluid' %}-fluid{% endif %}">
+    {% include "widget/contextnavigation/_item.html" %}
+  </div>
+</section>
+{% endif %}
+
+{% endfor %}
+
+<script>
+(function(){
+
+  var parallax = document.querySelectorAll(".parallax"),
+      speed = 1;
+
+  window.onscroll = function(){
+    [].slice.call(parallax).forEach(function(el,i){
+
+      var windowYOffset = window.pageYOffset,
+          elBackgrounPos = "50% " + (windowYOffset + speed) + "em";
+
+      el.style.backgroundPosition = elBackgrounPos;
+
+    });
+  };
+
+})();
+</script>
+
+{% endblock %}

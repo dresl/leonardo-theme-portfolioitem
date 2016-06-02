@@ -1,0 +1,6 @@
+include LICENSE
+include MANIFEST.in
+include README.rst
+recursive-include leonardo_theme_portfolioitem/static *
+recursive-include leonardo_theme_portfolioitem/locale *
+recursive-include leonardo_theme_portfolioitem/templates *

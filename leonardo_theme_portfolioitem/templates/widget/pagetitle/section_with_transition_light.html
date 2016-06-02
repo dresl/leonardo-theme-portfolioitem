@@ -1,0 +1,15 @@
+{% extends widget.get_base_template %}
+
+{% block content %}
+
+{% if title %}
+<div class="section-heading">
+  <h1 class="section-heading">{{ title|safe }}</h1>
+</div>
+{% else %}
+<div class="section-heading">
+  <h1 class="section-heading">{{ page.title|safe }}</h1>
+  <span class="border-light">
+</div>
+{% endif %}
+{% endblock %}
