@@ -15,18 +15,20 @@
     </noscript>
     {% analytical_body_top %}
     {% include "horizon/_messages.html" %}
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
         {% feincms_render_region feincms_page "header" request %}
       </div>
     </nav>
-    {% if feincms_page.layout == "boxed" and request.path == "/" %}
+    {% if feincms_page.layout == "boxed" %}
     <div class="container">
       {% feincms_render_region feincms_page "toolbar" request %}
       {% render_region_tools feincms_page "toolbar" request %}
     </div>
+    <div class="container">
     {% feincms_render_region feincms_page "col3" request %}
     {% render_region_tools feincms_page "col3" request %}
+    </div>
     {% else %}
     <section class="container content-section text-center">
       <div class="{{ feincms_page.get_layout_class }}">
