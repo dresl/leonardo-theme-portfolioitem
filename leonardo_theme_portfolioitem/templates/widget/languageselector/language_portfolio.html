@@ -1,0 +1,12 @@
+{% extends widget.get_base_template %}
+
+{% load i18n leonardo_page_tags %}
+
+{% block content %}
+{% feincms_languagelinks for page as links all,excludecurrent,request=request %}
+<div class="btn-group">
+{% for key, name, link in links %}
+    <a class="btn btn-primary" href="{% if link %}{{ link }}{% else %}/{{ key }}/{% endif %}">{% trans name %}</a>
+{% endfor %}
+</div>
+{% endblock %}
