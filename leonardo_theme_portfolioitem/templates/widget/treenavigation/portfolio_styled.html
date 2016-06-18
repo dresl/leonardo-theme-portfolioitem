@@ -1,0 +1,17 @@
+{% extends widget.get_base_template %}
+
+{% load feincms_page_tags %}
+
+{% block content %}
+{% feincms_nav root level=level depth=depth as toplevel %}
+<table class="table">
+    <tr>
+  {% for page in toplevel %}
+  <td style="width: {% if forloop.counter == 1 %}25%{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}12.5%{% endif %}; padding: 0px!important; font-weight: bold; border: none;"><a style="color: {% if forloop.counter == 1 %}blue{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}red{% endif %};width: 100%;" href="{{ page.get_navigation_url }}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}{% if page|is_equal_or_parent_of:current %} btn-primary{% else %} btn-portfolio-gray{% endif %}">{{ page.title }}</a></td>
+  {% if forloop.counter == 1 %}
+  <td style="width: 25%; border: none;"><a href="#" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}"><img src="http://leonardo-dresl.cz/media/public/2016/06/18/screenshot_from_2016-06-18_104009.png" alt=''></a></td>
+  {% endif %}
+  {% endfor %}
+    </tr>
+</table>
+{% endblock %}

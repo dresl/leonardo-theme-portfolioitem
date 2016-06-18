@@ -7,7 +7,7 @@
     {% include "_header.html" %}
     {% analytical_head_bottom %}
   </head>
-  <body id="{% block body_id %}main_content{% endblock %}" data-spy="scroll" data-target=".navbar-fixed-top" ng-app='horizon.app' ng-strict-di class="">
+  <body id="{% block body_id %}main_content{% endblock %}" data-spy="scroll" ng-app='horizon.app' ng-strict-di class="">
     <noscript>
       <div class="javascript_disabled_alert">
         {% trans "This application requires JavaScript to be enabled in your web browser." %}
@@ -15,7 +15,7 @@
     </noscript>
     {% analytical_body_top %}
     {% include "horizon/_messages.html" %}
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container-fluid">
         {% feincms_render_region feincms_page "header" request %}
       </div>
