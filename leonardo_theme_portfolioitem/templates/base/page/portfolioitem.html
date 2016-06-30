@@ -15,7 +15,7 @@
     </noscript>
     {% analytical_body_top %}
     {% include "horizon/_messages.html" %}
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <nav class="navbar navbar-default main-navbar-fixed" role="navigation">
       <div class="container-fluid">
         {% feincms_render_region feincms_page "header" request %}
       </div>
@@ -59,6 +59,22 @@
     {% analytical_body_bottom %}
   </body>
 </html>
+
+<script type="text/javascript">
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 500) {
+        $("#main_content").css("padding-top", "170px");
+        $(".main-navbar-fixed").addClass("navbar-static-top");
+        $(".main-navbar-fixed").removeClass("navbar-fixed-top");
+    } else {
+        $("#main_content").css("padding-top", "70px");
+        $(".main-navbar-fixed").addClass("navbar-fixed-top");
+        $(".main-navbar-fixed").removeClass("navbar-static-top");
+    }
+});
+</script>
 
 <script>
 (function(){

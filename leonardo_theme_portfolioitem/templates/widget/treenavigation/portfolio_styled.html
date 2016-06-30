@@ -4,7 +4,7 @@
 
 {% block content %}
 {% feincms_nav root level=level depth=1 as toplevel %}
-<div style="padding: 0px;" class="navbar-collapse collapse" id="top-nav">
+<div style="padding: 0px; width: 1110px;" class="navbar-collapse collapse navbar-fixed-check" id="top-nav">
   <ul style="float: none;" class="nav navbar-nav{% if widget.align == 'right' %} navbar-right{% endif %}">
   {% if depth == 1 %}
   {% for page in toplevel %}
@@ -41,6 +41,18 @@
   {% endif %}
   </ul>
 </div>
+
+<script type="text/javascript">
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 500) {
+        $(".navbar-fixed-check").addClass("navbar-fixed-top");
+    } else {
+        $(".navbar-fixed-check").removeClass("navbar-fixed-top");
+    }
+});
+</script>
 <!-- <table class="table">
     <tr>
   {% for page in toplevel %}

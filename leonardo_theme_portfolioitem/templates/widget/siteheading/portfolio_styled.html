@@ -26,7 +26,7 @@
         {% endif %}
     </a>
     {% else %}
-    <a class="navbar-brand" href="{{ request.path|slice:':12' }}">
+    <a class="navbar-brand" href="{% if request.path == request.path|slice:':12' %}.{% else %}{{ request.path|slice:':12' }}{% endif %}">
         <i class="fa fa-life-ring"></i> {{ widget.site_title }}
         {% if widget.tagline %}
         <span>{{ widget.tagline }}</span>
