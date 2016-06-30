@@ -3,15 +3,52 @@
 {% load feincms_page_tags %}
 
 {% block content %}
-{% feincms_nav root level=level depth=depth as toplevel %}
-<table class="table">
+{% feincms_nav root level=level depth=1 as toplevel %}
+<div style="padding: 0px;" class="navbar-collapse collapse" id="top-nav">
+  <ul style="float: none;" class="nav navbar-nav{% if widget.align == 'right' %} navbar-right{% endif %}">
+  {% if depth == 1 %}
+  {% for page in toplevel %}
+    <li style="margin-top: 40px;width: {% if forloop.counter == 1 %}25%{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}12.5%{% endif %}; padding: 0px!important; font-weight: bold; border: none;">
+      <a style="color: {% if forloop.counter == 1 %}blue{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}red{% endif %};width: 100%;" href="{{ page.get_navigation_url }}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}{% if page|is_equal_or_parent_of:current %} btn-portfolio-gray-active{% else %} btn-portfolio-gray{% endif %}">{{ page.title }}</a>
+    </li>
+    {% if forloop.counter == 1 %}
+    <li style="width: 25%; border: none;"><a style="padding: 0px;" href="{{ request.path|slice:':12' }}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}"><img src="http://leonardo-dresl.cz/media/public/2016/06/18/screenshot_from_2016-06-18_104009.png" alt=''></a></li>
+    {% endif %}
+  {% endfor %}
+  {% else %}
+  {% for page in toplevel %}
+    {% feincms_nav page level=level2 depth=1 as sublevel %}
+    {% if sublevel|length == 0 %}
+    <li style="width: {% if forloop.counter == 1 %}25%{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}12.5%{% endif %}; padding: 0px!important; font-weight: bold; border: none;">
+      <a style="color: {% if forloop.counter == 1 %}blue{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}red{% endif %};width: 100%;" href="{{ page.get_navigation_url }}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}{% if page|is_equal_or_parent_of:current %} btn-portfolio-gray-active{% else %} btn-portfolio-gray{% endif %}">{{ page.title }}</a>
+    </li>
+    {% if forloop.counter == 1 %}
+    <li style="width: 25%; border: none;"><a href="#" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}"><img src="http://leonardo-dresl.cz/media/public/2016/06/18/screenshot_from_2016-06-18_104009.png" alt=''></a></li>
+    {% endif %}
+    {% else %}
+    <li class="dropdown {% if page|is_equal_or_parent_of:current %}active{% endif %}">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="{{ page.get_navigation_url }}">{{ page.title }} <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+      {% for subpage in sublevel %}
+        <li class="{% if subpage|is_equal_or_parent_of:current %}active{% endif %}">
+          <a href="{{ subpage.get_navigation_url }}">{{ subpage.title }}</a>
+        </li>
+      {% endfor %}
+      </ul>
+    </li>
+    {% endif %}
+  {% endfor %}
+  {% endif %}
+  </ul>
+</div>
+<!-- <table class="table">
     <tr>
   {% for page in toplevel %}
-  <td style="width: {% if forloop.counter == 1 %}25%{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}12.5%{% endif %}; padding: 0px!important; font-weight: bold; border: none;"><a style="color: {% if forloop.counter == 1 %}blue{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}red{% endif %};width: 100%;" href="{{ page.get_navigation_url }}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}{% if page|is_equal_or_parent_of:current %} btn-primary{% else %} btn-portfolio-gray{% endif %}">{{ page.title }}</a></td>
+  <td style="width: {% if forloop.counter == 1 %}25%{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}12.5%{% endif %}; padding: 0px!important; font-weight: bold; border: none;"><a style="color: {% if forloop.counter == 1 %}blue{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}red{% endif %};width: 100%;" href="{{ page.get_navigation_url }}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}{% if page|is_equal_or_parent_of:current %} btn-portfolio-gray-active{% else %} btn-portfolio-gray{% endif %}">{{ page.title }}</a></td>
   {% if forloop.counter == 1 %}
   <td style="width: 25%; border: none;"><a href="#" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}"><img src="http://leonardo-dresl.cz/media/public/2016/06/18/screenshot_from_2016-06-18_104009.png" alt=''></a></td>
   {% endif %}
   {% endfor %}
     </tr>
-</table>
+</table> -->
 {% endblock %}
