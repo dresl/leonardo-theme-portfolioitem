@@ -12,7 +12,7 @@
       <a style="color: {% if forloop.counter == 1 %}blue{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}red{% endif %};width: 100%;" href="{{ page.get_navigation_url }}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}{% if page|is_equal_or_parent_of:current %} btn-portfolio-gray-active{% else %} btn-portfolio-gray{% endif %}">{{ page.title }}</a>
     </li>
     {% if forloop.counter == 1 %}
-    <li style="width: 25%; border: none;"><a style="padding: 0px;" href="{{ request.path|slice:':12' }}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}"><img src="http://leonardo-dresl.cz/media/public/2016/06/18/screenshot_from_2016-06-18_104009.png" alt=''></a></li>
+    <li style="width: 25%; border: none;"><a style="padding: 0px;" href="{% if 'vitejte' in request.path or 'welcome' in request.path %}{{ request.path|slice:':12' }}{% elif 'willkommen' in request.path %}{{ request.path|slice:':15' }}{% endif %}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}"><img src="http://leonardo-dresl.cz/media/public/2016/06/18/screenshot_from_2016-06-18_104009.png" alt=''></a></li>
     {% endif %}
   {% endfor %}
   {% else %}
@@ -23,7 +23,7 @@
       <a style="color: {% if forloop.counter == 1 %}blue{% elif forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}red{% endif %};width: 100%;" href="{{ page.get_navigation_url }}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}{% if page|is_equal_or_parent_of:current %} btn-portfolio-gray-active{% else %} btn-portfolio-gray{% endif %}">{{ page.title }}</a>
     </li>
     {% if forloop.counter == 1 %}
-    <li style="width: 25%; border: none;"><a href="#" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}"><img src="http://leonardo-dresl.cz/media/public/2016/06/18/screenshot_from_2016-06-18_104009.png" alt=''></a></li>
+    <li style="width: 25%; border: none;"><a href="{% if 'vitejte' in request.path or 'welcome' in request.path %}{{ request.path|slice:':12' }}{% elif 'willkommen' in request.path %}{{ request.path|slice:':15' }}{% endif %}" class="btn{% if widget.orientation == 'vertical' %} btn-block{% endif %}"><img src="http://leonardo-dresl.cz/media/public/2016/06/18/screenshot_from_2016-06-18_104009.png" alt=''></a></li>
     {% endif %}
     {% else %}
     <li class="dropdown {% if page|is_equal_or_parent_of:current %}active{% endif %}">

@@ -12,7 +12,7 @@
   </button>
   {% if widget.logo %}
   {% thumbnail widget.logo.file "200x50" format="PNG" as thumb %}
-  <a class="navbar-brand" href="{{ request.path|slice:':12' }}"><img class="img-responsive" src='{{ thumb.url }}' alt='logo' /></a>
+  <a class="navbar-brand" href="{% if 'vitejte' in request.path or 'welcome' in request.path %}{{ request.path|slice:':12' }}{% elif 'willkommen' in request.path %}{{ request.path|slice:':15' }}{% endif %}"><img class="img-responsive" src='{{ thumb.url }}' alt='logo' /></a>
   {% endthumbnail %}
   {% else %}
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
@@ -26,7 +26,7 @@
         {% endif %}
     </a>
     {% else %}
-    <a class="navbar-brand" href="{% if request.path == request.path|slice:':12' %}.{% else %}{{ request.path|slice:':12' }}{% endif %}">
+    <a class="navbar-brand" href="{% if 'vitejte' in request.path or 'welcome' in request.path %}{{ request.path|slice:':12' }}{% elif 'willkommen' in request.path %}{{ request.path|slice:':15' }}{% endif %}">
         <i class="fa fa-life-ring"></i> {{ widget.site_title }}
         {% if widget.tagline %}
         <span>{{ widget.tagline }}</span>
