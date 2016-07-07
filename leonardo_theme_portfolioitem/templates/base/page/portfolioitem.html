@@ -8,6 +8,7 @@
     {% analytical_head_bottom %}
   </head>
   <body id="{% block body_id %}main_content{% endblock %}" data-spy="scroll" ng-app='horizon.app' ng-strict-di class="">
+    <div class="fakeloader"></div>
     <noscript>
       <div class="javascript_disabled_alert">
         {% trans "This application requires JavaScript to be enabled in your web browser." %}
@@ -59,39 +60,3 @@
     {% analytical_body_bottom %}
   </body>
 </html>
-
-<script type="text/javascript">
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-
-    if (scroll >= 500) {
-        $("#main_content").css("padding-top", "170px");
-        $(".main-navbar-fixed").addClass("navbar-static-top");
-        $(".main-navbar-fixed").removeClass("navbar-fixed-top");
-    } else {
-        $("#main_content").css("padding-top", "70px");
-        $(".main-navbar-fixed").addClass("navbar-fixed-top");
-        $(".main-navbar-fixed").removeClass("navbar-static-top");
-    }
-});
-</script>
-
-<script>
-(function(){
-
-  var parallax = document.querySelectorAll(".parallax"),
-      speed = 0.5;
-
-  window.onscroll = function(){
-    [].slice.call(parallax).forEach(function(el,i){
-
-      var windowYOffset = window.pageYOffset,
-          elBackgrounPos = "50% " + (windowYOffset * speed) + "px";
-
-      el.style.backgroundPosition = elBackgrounPos;
-
-    });
-  };
-
-})();
-</script>
