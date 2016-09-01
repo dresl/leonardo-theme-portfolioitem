@@ -6,7 +6,7 @@
 {% feincms_languagelinks for page as links all,request=request %}
 <div class="btn-group">
 {% for key, name, link in links %}
-    <a id="btn-{{ name|lower }}-lan" style="border: none; background: url(http://leonardo-dresl.cz/media/public/2016/07/04/languages.png); width: 63px; height: 50px;{% if name == 'EN' %}background-position: -133px 4px;{% elif name == 'CS' %}background-position: -3px 4px{% elif name == 'DE' %}background-position: -69px 4px{% endif %}" onmouseover="lan_{{ name|lower }}_on()" onmouseout="lan_{{ name|lower }}_off()" class="btn btn-primary btn-{{ name|lower }}-lan" href="{% if link %}{{ link }}{% else %}/{{ key }}/{% endif %}"></a>
+    <a id="btn-{{ name|lower }}-lan" style="border: none; background: url(/static/img/language_images.png); width: 63px; height: 50px;{% if name == 'EN' %}background-position: -133px 4px;{% elif name == 'CS' %}background-position: -3px 4px{% elif name == 'DE' %}background-position: -69px 4px{% endif %}" onmouseover="lan_{{ name|lower }}_on()" onmouseout="lan_{{ name|lower }}_off()" class="btn btn-primary btn-{{ name|lower }}-lan" href="{% if link %}{{ link }}{% else %}/{{ key }}/{% endif %}"></a>
 {% endfor %}
 </div>
 <script>
